@@ -2,12 +2,10 @@ package com.example;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class CardLayoutTest1 extends JFrame implements ActionListener {
-    JPanel cardPanel;
-    CardLayout layout;
+public class CardLayoutTest1 extends JFrame{
+    public static JPanel cardPanel;
+    public static CardLayout layout;
 
     public static void main(String[] args) {
         CardLayoutTest1 frame = new CardLayoutTest1();
@@ -19,23 +17,8 @@ public class CardLayoutTest1 extends JFrame implements ActionListener {
     }
 
     CardLayoutTest1() {
-        // panel1
-        JPanel card1 = new JPanel(new BorderLayout());
-        JLabel label = new JLabel("First Panel");
-        JButton button1 = new JButton("button");
-        button1.addActionListener(this);
-        button1.setActionCommand("button");
-        card1.add(label, BorderLayout.CENTER);
-        card1.add(button1, BorderLayout.SOUTH);
-
-        // panel2
-        JPanel card2 = new JPanel(new BorderLayout());
-        JLabel label2 = new JLabel("Second Panel");
-        JButton button2 = new JButton("button2");
-        button2.addActionListener(this);
-        button2.setActionCommand("button2");
-        card2.add(label2, BorderLayout.CENTER);
-        card2.add(button2, BorderLayout.SOUTH);
+        Panel1 card1 = new Panel1(new BorderLayout());
+        Panel2 card2 = new Panel2(new BorderLayout());
 
         cardPanel = new JPanel();
         layout = new CardLayout();
@@ -47,13 +30,4 @@ public class CardLayoutTest1 extends JFrame implements ActionListener {
         getContentPane().add(cardPanel, BorderLayout.CENTER);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String cmd = e.getActionCommand();
-        if (cmd.equals("button")) {
-            layout.next(cardPanel);
-        } else if(cmd.equals("button2")) {
-            layout.previous(cardPanel);
-        }
-    }
 }
